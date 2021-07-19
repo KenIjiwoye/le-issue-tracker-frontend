@@ -1,0 +1,19 @@
+.stats-box {
+  border: 2px solid #122758;
+  border-radius: 25px;
+  width: 200px;
+  text-align: center;
+  margin: 1em;
+}
+
+.stats-box p {
+  color: #122758;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.stats-box h1 {
+  color: #122758;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}

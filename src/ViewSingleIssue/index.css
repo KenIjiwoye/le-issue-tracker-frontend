@@ -1,0 +1,10 @@
+.view-single-issue h1 {
+  margin-top: 0;
+}
+.view-single-issue p {
+  margin-bottom: 0;
+}
+.view-single-issue {
+  display: flex;
+  justify-content: space-between;
+}
