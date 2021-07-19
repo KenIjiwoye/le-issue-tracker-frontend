@@ -1,8 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import { PrimaryBtn, SecondaryBtnOutline } from "../components/Button";
 import { RouteComponentProps } from '@reach/router'
 
-export const EditIssue = (props: RouteComponentProps) => {
+interface EditIssueProps extends RouteComponentProps {
+  issueName?:string,
+  description?:string,
+  priority?:string,
+  assignTo?:string
+}
+
+export const EditIssue = (props: EditIssueProps) => {
+  const [isAdmin, setIsAdmin] = useState(false)
+    const [currentUser, setCurrentUser] = useState(false)
   return (
     <div>
       <h1>Edit Issue</h1>

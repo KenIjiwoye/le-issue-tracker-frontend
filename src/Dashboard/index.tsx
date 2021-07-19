@@ -5,7 +5,9 @@ import { Navbar } from './Navbar'
 import { Stats } from './Stats'
 import { RouteComponentProps } from '@reach/router'
 
-export const Dashboard = (props: RouteComponentProps) => {
+interface DashboardProps extends RouteComponentProps {}
+
+export const Dashboard = (props: DashboardProps) => {
     return (
         <div style ={{
             // paddingTop: '1em',
