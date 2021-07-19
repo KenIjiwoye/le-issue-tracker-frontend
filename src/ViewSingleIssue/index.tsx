@@ -1,13 +1,18 @@
+import { RouteComponentProps } from '@reach/router'
 import React from 'react'
-import { PrimaryBtn, SecondaryBtnOutline } from '../components/Button'
+import { DangerBtn, PrimaryBtn, SecondaryBtn, SecondaryBtnOutline } from '../components/Button'
 import './index.css'
 
-export const ViewSingleIssue = () => {
+interface ViewSingleIssueProps extends RouteComponentProps {
+    issueID?:string
+}
+
+export const ViewSingleIssue = (props:ViewSingleIssueProps) => {
     return (
         <div className='view-single-issue'>
             <div style={{ maxWidth: 768}} >
                 <div>
-                <p>Issue Name</p>
+                <p>Issue Name with ID# {props.issueID} </p>
                 <h1>Update landing page colors</h1>
                 </div>
                 <div>
@@ -36,7 +41,14 @@ export const ViewSingleIssue = () => {
                     <SecondaryBtnOutline text='GO BACK' />
                     <PrimaryBtn text='CLOSE ISSUE' />
                 </div>
+                <div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                    <SecondaryBtn text='EDIT' />
+                    <DangerBtn text='DELETE' />
+                </div>
             </div>
+            </div>
+            
         </div>
     )
 }

@@ -8,6 +8,20 @@ export const PrimaryBtn = ({text}:any) => {
         </button>
     )
 }
+export const SecondaryBtn = ({text}:any) => {
+    return (
+        <button className='secondary-btn' >
+            {text}
+        </button>
+    )
+}
+export const DangerBtn = ({text}:any) => {
+    return (
+        <button className='danger-btn' >
+            {text}
+        </button>
+    )
+}
 export const SecondaryBtnOutline = ({text}:any) => {
     return (
         <button className='secondary-outline-btn' >

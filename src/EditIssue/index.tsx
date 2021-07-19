@@ -1,7 +1,8 @@
 import React from "react";
 import { PrimaryBtn, SecondaryBtnOutline } from "../components/Button";
+import { RouteComponentProps } from '@reach/router'
 
-export const EditIssue = () => {
+export const EditIssue = (props: RouteComponentProps) => {
   return (
     <div>
       <h1>Edit Issue</h1>

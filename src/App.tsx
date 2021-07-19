@@ -8,17 +8,18 @@ import { Navbar } from './Dashboard/Navbar';
 import { ViewSingleIssue } from './ViewSingleIssue';
 import { NewIssue } from './NewIssue';
 import { EditIssue } from './EditIssue';
+import { Router } from '@reach/router'
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-     {/* <Register /> */}
-     {/* <Signin /> */}
-     <Dashboard />
-     {/* <ViewSingleIssue /> */}
-     {/* <NewIssue /> */}
-     {/* <EditIssue /> */}
+     <Router>
+       <Dashboard path='/' />
+       <NewIssue path='/new' />
+       <EditIssue path='/edit' />
+       <ViewSingleIssue path='/issue/:issueID' />
+     </Router>
     </div>
   );
 }

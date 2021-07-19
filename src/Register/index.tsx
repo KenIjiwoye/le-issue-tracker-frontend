@@ -1,8 +1,9 @@
 import React from "react";
 import logo from "../logo.svg";
 import { PrimaryBtn, SecondaryBtnOutline } from "../components/Button";
+import { RouteComponentProps } from '@reach/router'
 
-export const Register = () => {
+export const Register = (props: RouteComponentProps) => {
   return (
     <div style={{
       padding: 50,

@@ -3,8 +3,9 @@ import { PrimaryBtn, SecondaryBtnOutline } from '../components/Button'
 import { Table } from '../components/Table'
 import { Navbar } from './Navbar'
 import { Stats } from './Stats'
+import { RouteComponentProps } from '@reach/router'
 
-export const Dashboard = () => {
+export const Dashboard = (props: RouteComponentProps) => {
     return (
         <div style ={{
             // paddingTop: '1em',

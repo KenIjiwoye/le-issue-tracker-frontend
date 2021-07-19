@@ -12,6 +12,34 @@
   font-size: 1em;
   margin: 0.5em;
 }
+.secondary-btn {
+  background-color: #122758;
+  border-radius: 50px;
+  /* height: 65px; */
+  padding-left: 56px;
+  padding-right: 56px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0.5em;
+}
+.danger-btn {
+  background-color: #ff0000;
+  border-radius: 50px;
+  /* height: 65px; */
+  padding-left: 56px;
+  padding-right: 56px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0.5em;
+}
 
 .secondary-outline-btn {
   background-color: transparent;
