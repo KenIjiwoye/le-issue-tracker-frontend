@@ -1,8 +1,13 @@
 import React from "react";
 import logo from "../logo.svg";
 import avatar from "../avatar.png";
+import { RouteComponentProps } from "@reach/router";
 
-export const Navbar = () => {
+interface NavbarProps extends RouteComponentProps{
+  signOut:Function
+}
+
+export const Navbar = ({signOut}:NavbarProps) => {
   return (
     <div
       style={{

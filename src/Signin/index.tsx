@@ -8,10 +8,13 @@ type Inputs = {
   email: string,
   password: string
 }
+interface SigninProps extends RouteComponentProps{
+  signIn: Function
+}
 
-export const Signin = (props:RouteComponentProps) => {
+export const Signin = ({signIn}:SigninProps) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = data => signIn(data.email,data.password)
   console.log(watch("email")) 
   console.log(watch("password")) 
   return (

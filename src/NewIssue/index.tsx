@@ -1,6 +1,6 @@
 import React from "react";
 import { PrimaryBtn, SecondaryBtnOutline } from "../components/Button";
-import { RouteComponentProps } from '@reach/router'
+import { RouteComponentProps, Link } from '@reach/router'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 type Inputs = { 
@@ -51,7 +51,8 @@ export const NewIssue = (props: RouteComponentProps) => {
       }} >
           {/* <PrimaryBtn text='CREATE' /> */}
           <input type='submit' value='CREATE' className='primary-btn' />
-          <SecondaryBtnOutline text='CANCEL' />
+          {/* <SecondaryBtnOutline text='CANCEL' /> */}
+          <Link to='/' className='secondary-outline-btn' style={{textDecoration:'none'}}>CANCEL</Link>
       </div>
       </form>
     </div>

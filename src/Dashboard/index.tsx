@@ -3,7 +3,7 @@ import { PrimaryBtn, SecondaryBtnOutline } from '../components/Button'
 import { Table } from '../components/Table'
 import { Navbar } from './Navbar'
 import { Stats } from './Stats'
-import { RouteComponentProps } from '@reach/router'
+import { RouteComponentProps, Link } from '@reach/router'
 
 interface DashboardProps extends RouteComponentProps {}
 
@@ -27,7 +27,7 @@ export const Dashboard = (props: DashboardProps) => {
                 <div>
                     <SecondaryBtnOutline text='ALL ISSUES' />
                     <SecondaryBtnOutline text='MY ISSUES' />
-                    <PrimaryBtn text='NEW ISSUE' />
+                    <Link to='/new' className='primary-btn' style={{ textDecoration:'none'}}>NEW ISSUE</Link>
                 </div>
             </div>
             <Table />

@@ -13,7 +13,6 @@ import { NotFound } from "./NotFound";
 import { AuthContext, AuthProvider } from "./Contexts/AuthContext";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true);
   return ( 
     <AuthProvider>
       <AuthContext.Consumer>
@@ -22,7 +21,7 @@ function App() {
             <div className="App">
               {context.userLoggedIn && (
                 <div>
-                  <Navbar />
+                  <Navbar signOut={context.signOut} />
                   <Router>
                     <Dashboard path="/" />
                     <NewIssue path="/new" />
@@ -35,7 +34,7 @@ function App() {
               {!context.userLoggedIn && (
                 <div>
                   <Router>
-                    <Signin path="/" />
+                    <Signin signIn={context.signIn} path="/" />
                     <Register path="/register" />
                     <NotFound default />
                   </Router>
