@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { signInUser } from "../api";
+// import { signInUser } from "../api";
 
 const baseUrl = process.env.REACT_APP_BASEURL;
 const registerUrl = `${baseUrl}/auth/local/register`;
 const signinUrl = `${baseUrl}/auth/local`;
 
-export const AuthContext = React.createContext();
+export type AuthCtxState = {
+  authToken: any;
+  userLoggedIn: boolean;
+  signIn: Function;
+  signOut: Function;
+};
 
-export const AuthProvider = ({ children }) => {
+const AuthDefaultValues: AuthCtxState = {
+  authToken: null,
+  userLoggedIn: false,
+  signIn: () => {},
+  signOut: () => {}
+};
+
+export const AuthContext = React.createContext<AuthCtxState>(AuthDefaultValues);
+
+export const AuthProvider = ({ children }:any) => {
   const [authToken, setauthToken] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
@@ -21,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // create api operations here so that we have access to the React Context Api
-  const signIn = async (email, password) => {
+  const signIn = async (email:string, password:string) => {
     try {
       const user = {
         identifier: email,
