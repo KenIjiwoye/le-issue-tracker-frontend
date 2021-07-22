@@ -1,3 +1,4 @@
+import { navigate } from "@reach/router";
 import React, { useState, useEffect } from "react";
 // import { signInUser } from "../api";
 
@@ -8,11 +9,13 @@ const createIssue = `${baseUrl}/new`;
 
 export type MainCtxState = {
     allIssues: any[];
+    addNewIssue: Function
 
   };
   
   const MainDefaultValues: MainCtxState = {
     allIssues: [],
+    addNewIssue: () => {}
 
   };
   
@@ -37,6 +40,24 @@ const [allIssues, setallIssues] = useState([])
           console.log(`Error getting issues ;;==> ${err}`)
       }
   }
+
+  const addNewIssue = async (issue:any) => {
+    try {
+      const token = localStorage.getItem('authToken')
+      await fetch(getAllIssues, {
+        method: "POST",
+        body: JSON.stringify(issue),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+      })
+      .then(res => res.json())
+      .then(() => navigate('/'))
+    } catch (err) {
+      console.log('err making new issue', err)
+    }
+  }
   
   // const pullIssues = () => {
   //   const { isLoading, error, data } = useQuery('pullAllIssues', () =>
@@ -50,7 +71,8 @@ const [allIssues, setallIssues] = useState([])
   return (
     <MainContext.Provider
       value={{
-          allIssues
+          allIssues,
+          addNewIssue
       }}
     >
       {children}
