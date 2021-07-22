@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }:any) => {
         .then((res) => res.json())
         .then((data) => {
           console.log("logging the data", data);
-          localStorage.setItem("authToken", JSON.stringify(data.jwt));
+          localStorage.setItem("authToken", data.jwt);
           setUserLoggedIn(true);
         });
     } catch (err) {
