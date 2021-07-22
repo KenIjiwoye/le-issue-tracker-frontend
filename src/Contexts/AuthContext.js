@@ -21,42 +21,40 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // create api operations here so that we have access to the React Context Api
-  //   const signIn = async (email, password) => {
-  //     const user = await signInUser(email, password);
-  //     console.log("SIGN IN USER =>", user);
-  //   };
+  const signIn = async (email, password) => {
+    try {
+      const user = {
+        identifier: email,
+        password: password,
+      };
+      await fetch(signinUrl, {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("logging the data", data);
+          localStorage.setItem("authToken", JSON.stringify(data.jwt));
+          setUserLoggedIn(true);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const signOut = () => {
+    setUserLoggedIn(false);
+    setauthToken(null);
+  };
   return (
     <AuthContext.Provider
       value={{
         authToken,
         userLoggedIn,
-        signIn: async (email, password) => {
-          try {
-            const user = {
-              identifier: email,
-              password: password,
-            };
-            await fetch(signinUrl, {
-              method: "POST",
-              body: JSON.stringify(user),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                console.log("logging the data", data);
-                localStorage.setItem("authToken", JSON.stringify(data.jwt));
-                setUserLoggedIn(true);
-              });
-          } catch (err) {
-            console.log(err);
-          }
-        },
-        signOut: () => {
-          setUserLoggedIn(false);
-          setauthToken(null);
-        },
+        signIn: signIn,
+        signOut: signOut,
       }}
     >
       {children}
