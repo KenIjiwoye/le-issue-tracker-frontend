@@ -1,5 +1,5 @@
-import { RouteComponentProps } from "@reach/router";
-import React, {useState} from "react";
+import { Link, RouteComponentProps } from "@reach/router";
+import React, { useState } from "react";
 import {
   DangerBtn,
   PrimaryBtn,
@@ -14,44 +14,36 @@ interface ViewSingleIssueProps extends RouteComponentProps {
   description?: string;
   priority?: string;
   assignTo?: string;
+  status?: string;
 }
 
-export const ViewSingleIssue = ({
-  issueID,
-  issueName,
-  description,
-  priority,
-  assignTo,
-}: ViewSingleIssueProps) => {
-    const [isAdmin, setIsAdmin] = useState(false)
-    const [currentUser, setCurrentUser] = useState(false)
+export const ViewSingleIssue = (props: any) => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [currentUser, setCurrentUser] = useState(false);
+  const { id, issueName, assignTo, description, priority, status } =
+    props.location.state;
   return (
     <div className="view-single-issue">
       <div style={{ maxWidth: 768 }}>
         <div>
-          <p>Issue Name with ID# {issueID} </p>
-          <h1>Update landing page colors</h1>
+          <p>Issue Name with ID# {id} </p>
+          <h1>{issueName}</h1>
         </div>
         <div>
           <p>Priority</p>
-          <h1>Low</h1>
+          <h1>{priority}</h1>
         </div>
         <div>
           <p>Assigned To</p>
-          <h1>Ken Ijiwoye</h1>
+          <h1>{assignTo}</h1>
         </div>
         <div>
           <p>Status</p>
-          <h1>Open</h1>
+          <h1>{status}</h1>
         </div>
         <div>
           <h2>Description</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos
-            magnam eaque corrupti at, ipsum, consectetur perferendis laboriosam
-            cumque dolore pariatur ipsa. Ullam aspernatur non tempore magnam
-            dolor rerum facilis nostrum.
-          </p>
+          <p>{description}</p>
         </div>
       </div>
       <div>
@@ -60,11 +52,14 @@ export const ViewSingleIssue = ({
           <h1>Someone</h1>
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <SecondaryBtnOutline text="GO BACK" />
+          {/* <SecondaryBtnOutline
+            text="GO BACK"
+          /> */}
+          <Link to='/' className='secondary-outline-btn' style={{textDecoration:'none'}} >GO BACK</Link>
           <PrimaryBtn text="CLOSE ISSUE" />
         </div>
         {(isAdmin || currentUser) && (
-            <div>
+          <div>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <SecondaryBtn text="EDIT" />
               <DangerBtn text="DELETE" />

@@ -11,6 +11,10 @@ import { EditIssue } from "./EditIssue";
 import { Router } from "@reach/router";
 import { NotFound } from "./NotFound";
 import { AuthContext, AuthProvider } from "./Contexts/AuthContext";
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+
+
+const queryClient = new QueryClient()
 
 function App() {
   return ( 
@@ -20,6 +24,7 @@ function App() {
           return (
             <div className="App">
               {context.userLoggedIn && (
+                <QueryClientProvider client={queryClient} >
                 <div>
                   <Navbar signOut={context.signOut} />
                   <Router>
@@ -30,6 +35,7 @@ function App() {
                     <NotFound default />
                   </Router>
                 </div>
+                </QueryClientProvider>
               )}
               {!context.userLoggedIn && (
                 <div>

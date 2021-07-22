@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useQuery } from 'react-query'
 // import { signInUser } from "../api";
 
 const baseUrl = process.env.REACT_APP_BASEURL;
@@ -23,6 +24,7 @@ const [allIssues, setallIssues] = useState([])
 
   useEffect(() => {
     getIssues()
+    // pullIssues()
     // return () => {};
   }, []);
 
@@ -35,7 +37,16 @@ const [allIssues, setallIssues] = useState([])
       } catch (err) {
           console.log(`Error getting issues ;;==> ${err}`)
       }
-  } 
+  }
+  
+  // const pullIssues = () => {
+  //   const { isLoading, error, data } = useQuery('pullAllIssues', () =>
+  //   fetch(getAllIssues).then(res =>
+  //     res.json()
+  //   )
+  //   .then(issues => setallIssues(issues))
+  // )
+  // }
   
   return (
     <MainContext.Provider

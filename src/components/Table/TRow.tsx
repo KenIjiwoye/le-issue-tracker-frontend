@@ -1,8 +1,13 @@
 import React from 'react'
+import { useNavigate } from "@reach/router"
 
-export const TRow = ({issueName,priority,assignTo,date}:any) => {
+export const TRow = ({issueName,priority,assignTo,date,id,status,description}:any) => {
+    const navigate = useNavigate()
     return (
-        <tr style ={{
+        <tr onClick={(e) => {
+            e.preventDefault();
+            navigate(`/issue/${id}`, { state: { id,issueName,priority,assignTo,date,status,description }})
+        }} style ={{
             display: 'flex',
             justifyContent: 'space-around',
             backgroundColor: '#fff',        

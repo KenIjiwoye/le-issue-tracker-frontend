@@ -14,16 +14,22 @@ export const Table = (props: any) => {
       <THeader />
       {getIssues.map(
         (issue: {
-          issueName: any;
-          priority: any;
-          assignTo: any;
+            _id:string;
+          issueName: string;
+          priority: string;
+          assignTo: string;
           createdAt: Date;
+          status: string;
+          description: string;
         }) => (
           <TRow
+          id={issue._id}
             issueName={issue.issueName}
             priority={issue.priority}
             assignTo={issue.assignTo}
             date={issue.createdAt}
+            status={issue.status}
+            description={issue.description}
           />
         )
       )}
