@@ -23,7 +23,7 @@ function App() {
             <div className="App">
               {context.userLoggedIn && (
                 <div>
-                  <Navbar signOut={context.signOut} />
+                  <Navbar signOut={context.signOut} user={context.user} />
                   <Router>
                     <Dashboard path="/" />
                     <NewIssue currentUser={context.user} path="/new" />

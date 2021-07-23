@@ -4,10 +4,11 @@ import avatar from "../avatar.png";
 import { RouteComponentProps } from "@reach/router";
 
 interface NavbarProps extends RouteComponentProps{
-  signOut:Function
+  signOut:Function;
+  user: any;
 }
 
-export const Navbar = ({signOut}:NavbarProps) => {
+export const Navbar = ({signOut,user}:NavbarProps) => {
   return (
     <div
       style={{
@@ -26,13 +27,14 @@ export const Navbar = ({signOut}:NavbarProps) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          width: 150,
+          width: 250,
           alignItems: "center",
           height: 70,
         }}
       >
         <img src={avatar} width="50" height="50" alt="" />
-        <p>Ken Ijiwoye</p>
+        <p>{user}</p>
+        <span onClick={() => signOut()} className="material-icons">logout</span>
       </div>
     </div>
   );
