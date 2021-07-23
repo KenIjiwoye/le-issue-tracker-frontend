@@ -1,3 +1,4 @@
+import { navigate } from "@reach/router";
 import React, { useState, useEffect } from "react";
 // import { signInUser } from "../api";
 
@@ -8,6 +9,7 @@ const signinUrl = `${baseUrl}/auth/local`;
 export type AuthCtxState = {
   authToken: any;
   userLoggedIn: boolean;
+  user:any;
   signIn: Function;
   signOut: Function;
 };
@@ -15,6 +17,7 @@ export type AuthCtxState = {
 const AuthDefaultValues: AuthCtxState = {
   authToken: null,
   userLoggedIn: false,
+  user: {},
   signIn: () => {},
   signOut: () => {}
 };
@@ -24,9 +27,10 @@ export const AuthContext = React.createContext<AuthCtxState>(AuthDefaultValues);
 export const AuthProvider = ({ children }:any) => {
   const [authToken, setauthToken] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [user, setUser] = useState({})
 
   useEffect(() => {
-    if (localStorage.getItem("authToken")) {
+    if (localStorage.getItem("authToken") && localStorage.getItem('currentUser')) {
       return setUserLoggedIn(true);
     } else {
       return setUserLoggedIn(false);
@@ -53,6 +57,9 @@ export const AuthProvider = ({ children }:any) => {
           console.log("logging the data", data);
           localStorage.setItem("authToken", data.jwt);
           setUserLoggedIn(true);
+          localStorage.setItem('currentUser', data.user.username)
+          setUser(data.user.username)
+          console.log("logging the USER", data.user);
         });
     } catch (err) {
       console.log(err);
@@ -61,12 +68,16 @@ export const AuthProvider = ({ children }:any) => {
   const signOut = () => {
     setUserLoggedIn(false);
     setauthToken(null);
+    localStorage.removeItem('authToken')
+    localStorage.removeItem('currentUser')
+    navigate('/')
   };
   return (
     <AuthContext.Provider
       value={{
         authToken,
         userLoggedIn,
+        user,
         signIn: signIn,
         signOut: signOut,
       }}

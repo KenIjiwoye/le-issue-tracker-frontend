@@ -14,7 +14,7 @@ type Inputs = {
   // issueUpdated: Date
 }
 
-export const NewIssue = (props: RouteComponentProps) => {
+export const NewIssue = ({currentUser}:any,props: RouteComponentProps) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
 
   return (

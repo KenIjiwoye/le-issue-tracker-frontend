@@ -26,7 +26,7 @@ function App() {
                   <Navbar signOut={context.signOut} />
                   <Router>
                     <Dashboard path="/" />
-                    <NewIssue path="/new" />
+                    <NewIssue currentUser={context.user} path="/new" />
                     <EditIssue path="/edit" />
                     <ViewSingleIssue path="/issue/:issueID" />
                     <NotFound default />

@@ -15,13 +15,17 @@ interface ViewSingleIssueProps extends RouteComponentProps {
   priority?: string;
   assignTo?: string;
   status?: string;
+  createdBy?: string;
 }
 
 export const ViewSingleIssue = (props: any) => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [currentUser, setCurrentUser] = useState(false);
-  const { id, issueName, assignTo, description, priority, status } =
-    props.location.state;
+  // const [currentUser, setCurrentUser] = useState(props.user);
+  console.log('USER FROM SINGLE ISSUE', localStorage.getItem('currentUser'))
+  const { id, issueName, assignTo, description, priority, status,createdBy } =
+  props.location.state;
+  
+  console.log('CREATED BY ===>',props.location.state.createdBy)
   return (
     <div className="view-single-issue">
       <div style={{ maxWidth: 768 }}>
@@ -58,7 +62,7 @@ export const ViewSingleIssue = (props: any) => {
           <Link to='/' className='secondary-outline-btn' style={{textDecoration:'none'}} >GO BACK</Link>
           <PrimaryBtn text="CLOSE ISSUE" />
         </div>
-        {(isAdmin || currentUser) && (
+        {(localStorage.getItem('currentUser') == `${createdBy}`) && (
           <div>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <SecondaryBtn text="EDIT" />

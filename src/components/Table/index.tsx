@@ -21,6 +21,7 @@ export const Table = (props: any) => {
           createdAt: Date;
           status: string;
           description: string;
+          createdBy: string;
         }) => (
           <TRow
           id={issue._id}
@@ -30,6 +31,7 @@ export const Table = (props: any) => {
             date={issue.createdAt}
             status={issue.status}
             description={issue.description}
+            createdBy={issue.createdBy}
           />
         )
       )}
