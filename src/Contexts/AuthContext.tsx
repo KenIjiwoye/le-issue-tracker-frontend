@@ -27,11 +27,12 @@ export const AuthContext = React.createContext<AuthCtxState>(AuthDefaultValues);
 export const AuthProvider = ({ children }:any) => {
   const [authToken, setauthToken] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState('')
 
   useEffect(() => {
     if (localStorage.getItem("authToken") && localStorage.getItem('currentUser')) {
-      return setUserLoggedIn(true);
+       setUserLoggedIn(true);
+       setUser(JSON.stringify(localStorage.getItem('currentUser')))
     } else {
       return setUserLoggedIn(false);
     }

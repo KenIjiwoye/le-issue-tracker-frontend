@@ -9,6 +9,7 @@ type Inputs = {
   description?: string,
   priority: string,
   assignTo: string,
+  createdBy: string,
   // status: string,
   // issueDate: Date,
   // issueUpdated: Date
@@ -28,8 +29,9 @@ export const NewIssue = ({currentUser}:any,props: RouteComponentProps) => {
           <form onSubmit={handleSubmit(onSubmit)} style ={{
               display: 'flex',
               flexDirection: 'column',
-              maxWidth: 500
+              maxWidth: 500 
           }} >
+            <input hidden {...register("createdBy", { required: true })} className="le-input" type="text" placeholder=" Issue Name" value={currentUser} />
             <input {...register("issueName", { required: true })} className="le-input" type="text" placeholder=" Issue Name" />
             <input {...register("description", { required: true })} className="le-input" type="text" placeholder=" Description" />
             <label>Priority:</label>
@@ -43,6 +45,7 @@ export const NewIssue = ({currentUser}:any,props: RouteComponentProps) => {
               <option value="Ken Ijiwoye">Ken Ijiwoye</option>
               <option value="Bill Gates">Bill Gates</option>
               <option value="Tim Cook">Tim Cook</option>
+              <option value="dummy">dummy</option>
             </select>
             {errors.issueName && <span>Issue name field is required</span>}
            

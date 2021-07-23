@@ -5,16 +5,19 @@ import React, { useState, useEffect } from "react";
 const baseUrl = process.env.REACT_APP_BASEURL;
 const getAllIssues = `${baseUrl}/issues`
 const createIssue = `${baseUrl}/new`;
+const getUsers = `${baseUrl}/users`
 // const viewIssue = `${baseUrl}/issue/`;
 
 export type MainCtxState = {
     allIssues: any[];
+    allUsers: any[];
     addNewIssue: Function
 
   };
   
   const MainDefaultValues: MainCtxState = {
     allIssues: [],
+    allUsers: [],
     addNewIssue: () => {}
 
   };
@@ -23,9 +26,11 @@ export type MainCtxState = {
 
 export const MainProvider = ({ children }:any) => {
 const [allIssues, setallIssues] = useState([])
+const [allUsers, setAllUsers] = useState([])
 
   useEffect(() => {
     getIssues()
+    getAllUsers()
     // pullIssues()
     // return () => {};
   }, []);
@@ -40,9 +45,19 @@ const [allIssues, setallIssues] = useState([])
           console.log(`Error getting issues ;;==> ${err}`)
       }
   }
+  const getAllUsers = async () =>{
+      try {
+        await fetch(getUsers)
+        .then(res => res.json())
+        .then(users => setAllUsers(users))
+      } catch (err) {
+          console.log(`Error getting users ;;==> ${err}`)
+      }
+  }
 
-  const addNewIssue = async (issue:any) => {
+  const addNewIssue = async (issue:any) => {    
     try {
+      
       const token = localStorage.getItem('authToken')
       await fetch(getAllIssues, {
         method: "POST",
@@ -59,6 +74,7 @@ const [allIssues, setallIssues] = useState([])
     }
   }
   
+  
   // const pullIssues = () => {
   //   const { isLoading, error, data } = useQuery('pullAllIssues', () =>
   //   fetch(getAllIssues).then(res =>
@@ -72,6 +88,7 @@ const [allIssues, setallIssues] = useState([])
     <MainContext.Provider
       value={{
           allIssues,
+          allUsers,
           addNewIssue
       }}
     >
