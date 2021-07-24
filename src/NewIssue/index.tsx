@@ -23,7 +23,7 @@ export const NewIssue = ({currentUser}:any,props: RouteComponentProps) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data :any) => {
     newIssue.mutate(data)
-    navigate('/')
+    // navigate('/')
   };
   const newIssue = useMutation( addNewIssue => (
     fetch(`${process.env.REACT_APP_BASEURL}/issues`, {
@@ -34,6 +34,7 @@ export const NewIssue = ({currentUser}:any,props: RouteComponentProps) => {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }
     })
+    .then(() => navigate('/'))
   ))
 
   return (
