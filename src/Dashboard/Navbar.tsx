@@ -33,7 +33,8 @@ export const Navbar = ({signOut,user}:NavbarProps) => {
         }}
       >
         <img src={avatar} width="50" height="50" alt="" />
-        <p>{user && JSON.parse(user)}</p>
+        <p>{localStorage.getItem('currentUser') || 'Welcome Back!'}</p>
+        {/* <p>{user && JSON.parse(user)}</p> */}
         <span onClick={() => signOut()} className="material-icons">logout</span>
       </div>
     </div>

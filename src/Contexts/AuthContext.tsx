@@ -1,6 +1,7 @@
 import { navigate } from "@reach/router";
 import React, { useState, useEffect } from "react";
 // import { signInUser } from "../api";
+import { useQuery } from 'react-query'
 
 const baseUrl = process.env.REACT_APP_BASEURL;
 const registerUrl = `${baseUrl}/auth/local/register`;
@@ -29,6 +30,7 @@ export const AuthProvider = ({ children }:any) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [user, setUser] = useState('')
 
+
   useEffect(() => {
     if (localStorage.getItem("authToken") && localStorage.getItem('currentUser')) {
        setUserLoggedIn(true);
@@ -36,7 +38,7 @@ export const AuthProvider = ({ children }:any) => {
     } else {
       return setUserLoggedIn(false);
     }
-    return () => {};
+    // return () => {};
   }, []);
 
   // create api operations here so that we have access to the React Context Api
