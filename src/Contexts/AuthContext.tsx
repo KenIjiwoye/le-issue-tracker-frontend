@@ -11,16 +11,20 @@ export type AuthCtxState = {
   authToken: any;
   userLoggedIn: boolean;
   user:any;
-  signIn: Function;
+  // signIn: Function;
   signOut: Function;
+  setauthToken: any;
+  setUserLoggedIn: any;
 };
 
 const AuthDefaultValues: AuthCtxState = {
   authToken: null,
   userLoggedIn: false,
   user: {},
-  signIn: () => {},
-  signOut: () => {}
+  // signIn: () => {},
+  signOut: () => {},
+  setauthToken: null,
+  setUserLoggedIn: null
 };
 
 export const AuthContext = React.createContext<AuthCtxState>(AuthDefaultValues);
@@ -81,8 +85,10 @@ export const AuthProvider = ({ children }:any) => {
         authToken,
         userLoggedIn,
         user,
-        signIn: signIn,
+        // signIn: signIn,
         signOut: signOut,
+        setauthToken,
+        setUserLoggedIn
       }}
     >
       {children}

@@ -4,7 +4,9 @@ import { THeader } from "./THeader";
 import { TRow } from "./TRow";
 
 export const Table = (props: any) => {
-  const getIssues: any = props.issues;
+  const getIssues: any = props.showIssues;
+
+  if(props.isLoading) return <h2>Loading Issues...</h2>
   return (
     <table
       style={{
@@ -12,7 +14,7 @@ export const Table = (props: any) => {
       }}
     >
       <THeader />
-      {getIssues.map(
+      {getIssues?.map(
         (issue: {
             _id:string;
           issueName: string;

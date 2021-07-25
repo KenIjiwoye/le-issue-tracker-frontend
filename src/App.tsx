@@ -36,7 +36,7 @@ function App() {
               {!context.userLoggedIn && (
                 <div>
                   <Router>
-                    <Signin signIn={context.signIn} path="/" />
+                    <Signin setAuthToken={context.setauthToken} setUserLoggedIn={context.setUserLoggedIn} path="/" />
                     <Register path="/register" />
                     <NotFound default />
                   </Router>

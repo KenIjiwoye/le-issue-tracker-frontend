@@ -4,7 +4,6 @@ import { RouteComponentProps, Link, navigate } from '@reach/router'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { MainContext, MainProvider } from "../Contexts/MainContext";
 import { useMutation } from 'react-query'
-import { Mutation } from "react-query/types/core/mutation";
 
 type Inputs = { 
   issueName: string,
