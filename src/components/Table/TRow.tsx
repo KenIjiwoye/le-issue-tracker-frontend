@@ -9,11 +9,12 @@ export const TRow = ({issueName,priority,assignTo,date,id,status,description,cre
             navigate(`/issue/${id}`, { state: { id,issueName,priority,assignTo,date,status,description,createdBy }})
         }} style ={{
             display: 'flex',
-            justifyContent: 'space-around',
+            // justifyContent: 'space-around',
             backgroundColor: '#fff',        
             padding: '1em',
             color: 'black',
             borderBottom: '2px solid #c2c2c2',
+            
         }} >
             <td>{issueName}</td>
             <td>{priority}</td>

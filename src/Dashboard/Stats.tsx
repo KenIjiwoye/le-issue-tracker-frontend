@@ -1,7 +1,17 @@
 import React from 'react'
 import { StatsBox } from '../components/StatsBox'
 
-export const Stats = () => {
+export const Stats = ({showIssues } :any) => {
+    const completedIssues = () => {
+        let issues =[]
+        showIssues.map((issue:any) => {
+            if(issue.status == 'closed'){
+                issues.push(issue)
+            }
+        })
+
+        return issues.length
+    }
     return (
         <div style={{
             display:'flex',
@@ -12,9 +22,9 @@ export const Stats = () => {
             display: 'flex',
             maxWidth: '768px'
         }} >
-            <StatsBox title='Open Issues' statsVal='12' />
-            <StatsBox title='Closed Issues' statsVal='36' />
-            <StatsBox title='% Completed' statsVal='66%' />
+            <StatsBox title='Open Issues' statsVal={`${showIssues? (showIssues.length): ('--')}`} />
+            <StatsBox title='Closed Issues' statsVal={`${showIssues? (completedIssues()):'--'}`} />
+            <StatsBox title='% Completed' statsVal={`${showIssues? (completedIssues() /showIssues.length * 100): ('--')} %`} />
         </div>
         </div>
     )

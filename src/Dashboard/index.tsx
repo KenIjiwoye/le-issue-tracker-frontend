@@ -30,7 +30,7 @@ export const Dashboard = (props: DashboardProps) => {
         }} >
             {/* <Navbar /> */}
             <h1>Dashboard</h1>
-            <Stats />
+            <Stats showIssues={data} />
             <div style={{
                 display: 'flex',
                 alignItems: 'center',

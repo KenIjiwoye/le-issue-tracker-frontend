@@ -11,6 +11,7 @@ export const Table = (props: any) => {
     <table
       style={{
         width: "100%",
+        textAlign: 'center'
       }}
     >
       <THeader />
